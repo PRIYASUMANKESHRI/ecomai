@@ -1,4 +1,5 @@
-import { Facebook, Instagram as InstagramIcon, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram as InstagramIcon, Youtube } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const brands = [
   { name: 'Milton', link: '#' },
@@ -131,17 +132,17 @@ export default function Footer() {
               <div>
                 <h5 className="text-white font-semibold mb-2">Follow us</h5>
                 <div className="flex space-x-4">
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a href="https://www.instagram.com/miltonhouseware/" className="hover:text-white transition-colors">
                     <InstagramIcon className="w-5 h-5" />
                   </a>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a href="https://www.facebook.com/MiltonHouseware/" className="hover:text-white transition-colors">
                     <Facebook className="w-5 h-5" />
                   </a>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a href="https://www.youtube.com/user/MiltonHouseware" className="hover:text-white transition-colors">
                     <Youtube className="w-5 h-5" />
                   </a>
-                  <a href="#" className="hover:text-white transition-colors">
-                    <Twitter className="w-5 h-5" />
+                  <a href="https://twitter.com/milton_india" className="hover:text-white transition-colors">
+                    <X className="w-5 h-5" />
                   </a>
                 </div>
               </div>
