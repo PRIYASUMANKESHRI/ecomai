@@ -17,6 +17,7 @@ import React, { useState, useEffect, useRef } from 'react';
     import { useWishlist } from '../../hooks/useWishlist';
     import { products } from '../../data/products';
     import { Product } from '../../types/product';
+    import CartSidebar from '../cart/CartSidebar';
 
     const categories = [
       {
@@ -90,9 +91,14 @@ import React, { useState, useEffect, useRef } from 'react';
       const { cart } = useCart();
       const { items: wishlistItems } = useWishlist();
       const searchBarRef = useRef<HTMLDivElement>(null);
+      const [isCartOpen, setIsCartOpen] = useState(false);
 
-      const cartItemCount = cart.items.length;
-      const wishlistItemCount = wishlistItems.length;
+      const cartItemCount = cart?.items?.length || 0;
+      const wishlistItemCount = wishlistItems?.length || 0;
+
+      useEffect(() => {
+        console.log('Navbar cart state:', cart);
+      }, [cart]);
 
       const handleSearch = (query: string) => {
         setSearchQuery(query);
@@ -311,13 +317,13 @@ import React, { useState, useEffect, useRef } from 'react';
                   <User className="w-5 h-5 mr-2" />
                   <span>Account</span>
                 </a>
-                <a
-                  href="/cart"
+                <button
+                  onClick={() => setIsCartOpen(true)}
                   className="flex items-center text-gray-700 hover:text-red-500"
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   <span>Cart ({cartItemCount})</span>
-                </a>
+                </button>
                 <a
                   href="/wishlist"
                   className="flex items-center text-gray-700 hover:text-red-500"
@@ -430,13 +436,13 @@ import React, { useState, useEffect, useRef } from 'react';
                     <User className="w-5 h-5 mr-2" />
                     <span>Account</span>
                   </a>
-                  <a
-                    href="/cart"
+                  <button
+                    onClick={() => setIsCartOpen(true)}
                     className="flex items-center text-gray-700 hover:text-red-500"
                   >
                     <ShoppingCart className="w-5 h-5 mr-2" />
                     <span>Cart ({cartItemCount})</span>
-                  </a>
+                  </button>
                   <a
                     href="/wishlist"
                     className="flex items-center text-gray-700 hover:text-red-500"
@@ -455,6 +461,7 @@ import React, { useState, useEffect, useRef } from 'react';
               </div>
             </div>
           )}
+          <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
         </nav>
       );
     }
